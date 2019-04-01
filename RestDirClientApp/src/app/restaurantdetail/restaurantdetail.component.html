@@ -1,0 +1,142 @@
+<div class="container">
+
+  <!-- Portfolio Item Heading -->
+  <h2 class="my-1; text-success" >{{resto.name}}</h2>
+  <h3 top-margin="10px"><small>{{resto.cuisine}}</small></h3>
+
+  <!-- Portfolio Item Row -->
+
+    <div class="col-md-8" >
+      <img class="img-fluid" src= {{resto.urlPhoto}} alt="" width="400" height="300">
+      <h4 class="my-3; text-muted ">Description</h4>
+      <p>{{resto.description}}</p>
+
+
+      <div class="row">
+          <div class="col-md-6">
+            <h4 class="my-3">Address</h4>
+              <p>{{resto.name}}</p>
+            <h4 class="my-3">Contact Info</h4>
+              <p>{{resto.contactInfo}}</p>
+            <h4 class="my-3">Open Hours</h4>
+            <p>{{resto.openHours}}</p>
+          </div>
+          <div class="col-md-6">
+
+            <h4 class="my-3">Avreage Cost</h4>
+              <p>{{resto.averageCost}}</p>
+            <h4 class="my-3">Other Info</h4>
+                <p>{{resto.otherInfo}}</p>
+          </div>
+
+      </div> <!-- /.row -->
+
+
+      <h3 class="my-4">Photos</h3>
+
+      <div class="row">
+
+        <div class="col-md-4 col-sm-6 mb-4" id="divphoto" *ngFor="let photo of this.photos" >
+          <a href="#">
+            <img class="img-fluid" src={{photo.url}} alt="" width="260" height="145" margin="auto">
+          </a>
+        </div>
+
+
+      </div>
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+
+<div class="container">
+
+  <div class="navbar navbar-default">
+      <div class="navbar-header">
+          <h3>Photo Upload</h3>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-3">
+          <h3>Select files</h3>
+
+          <div ng2FileDrop
+               [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+               (fileOver)="fileOverBase($event)"
+               [uploader]="uploader"
+               class="well my-drop-zone">
+              Base drop zone
+          </div>
+
+          Single
+          <input type="file" ng2FileSelect [uploader]="uploader" />
+      </div>
+
+      <div class="col-md-9" style="margin-bottom: 40px">
+
+          <h2>Upload queue</h2>
+          <p>Queue length: {{ uploader?.queue?.length }}</p>
+
+          <table class="table">
+              <thead>
+              <tr>
+                  <th width="50%">Name</th>
+                  <th>Size</th>
+                  <th>Progress</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of uploader.queue">
+                  <td><strong>{{ item?.file?.name }}</strong></td>
+                  <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                  <td *ngIf="uploader.isHTML5">
+                      <div class="progress" style="margin-bottom: 0;">
+                          <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                      </div>
+                  </td>
+                  <td class="text-center">
+                      <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                      <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                      <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                  </td>
+
+              </tr>
+              </tbody>
+          </table>
+
+          <div>
+              <div>
+                  Queue progress:
+                  <div class="progress" style="">
+                      <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                  </div>
+              </div>
+              <button type="button" class="btn btn-success btn-s"
+                      (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                  <span class="glyphicon glyphicon-upload"></span> Upload
+              </button>
+              <button type="button" class="btn btn-warning btn-s"
+                      (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                  <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+              </button>
+              <button type="button" class="btn btn-danger btn-s"
+                      (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                  <span class="glyphicon glyphicon-trash"></span> Remove
+              </button>
+          </div>
+
+      </div>
+
+  </div>
+<br/>
+<br/>
+
+
+</div>
+
+

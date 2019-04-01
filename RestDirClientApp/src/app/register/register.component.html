@@ -1,0 +1,34 @@
+
+<div class="container">
+        <div class="card card-container">
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" (ngSubmit)="f.form.valid && register()  " #f="ngForm" novalidate>
+                
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+                    <input type="text" id="inputName" class="form-control" placeholder="Name"  name="name" [(ngModel)]="model.name" #name="ngModel"  required autofocus >
+                    <div *ngIf="f.submitted && !name.valid" class="help-block">Name is required</div>
+                </div>
+
+                <span id="reauth-email" class="reauth-email"></span>
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="username" [(ngModel)]="model.username" #username="ngModel"  required >
+                    <div *ngIf="f.submitted && !username.valid" class="help-block">Email address is required</div>
+                </div>  
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                    <div *ngIf="f.submitted && !password.valid" class="help-block">password is required</div>
+                </div>
+
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !cpassword.valid }">
+                        <input type="password" id="inputcPassword" class="form-control" placeholder="Confirm password" name="cpassword" [(ngModel)]="model.cpassword"  #cpassword="ngModel" required>
+                        <div *ngIf="f.submitted && !cpassword.valid && confirmPassword()" class="help-block">Confirm password is required</div>
+                    </div>
+                
+                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Register</button>
+            </form><!-- /form -->
+
+        </div><!-- /card-container -->
+    </div><!-- /container -->

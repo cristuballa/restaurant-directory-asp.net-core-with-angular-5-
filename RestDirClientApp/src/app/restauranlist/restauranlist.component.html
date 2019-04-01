@@ -1,0 +1,96 @@
+
+
+
+   <!-- Page Content -->
+ <div class="container ">
+    <!-- Search Bar -->
+      <h1 class="my-4"></h1>
+      <div class="mx-auto row justify-content-md-center">
+          <div class="col-md-9 my-4">
+              <form class="row ">
+                  <div class="col-12 col-sm pr-sm-0">
+                      <input type="text" #keyword  name="search" id="search" value="" placeholder="Search restaurant name, cuisine, location" class="form-control">
+                  </div>
+                  <div class="col-12 col-sm-auto pl-sm-0 mx-1">
+                      <input type="button" name="commit" value="Search" class="btn btn-primary " (click)="search(keyword.value)">
+                      <input type="button" name="search" value="Show Verified" class="btn btn-primary " (click)="gets()">
+                      <input type="button" name="search" value="Show Unverified" class="btn btn-primary " (click)="getsunverified()">
+                  </div>
+              </form>
+          </div>
+      </div>
+   
+      <div class="mx-auto row justify-content-md-center">
+
+            <div class="row hidden-md-up" >
+
+              <div class="col-md-4" *ngFor="let resto of restos">
+                <div class="card">
+                    <img class="card-img-top" src={{resto.urlPhoto}} alt="Resto image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">{{resto.name}} </h5>
+                      <input type="hidden" #id  [(ngModel)]="resto.id">
+                      <p class="card-text">
+                        <strong >ADDRESS:</strong>
+                        {{resto.address}}
+                        <br>
+                        <Strong>HOURS:</Strong>
+                        {{resto.openHours}}
+                        <br>
+                        <strong>CUISINES:</strong>
+                        {{resto.cuisine}}
+                      </p>
+                      <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                      4.0 stars
+                      <br>
+                      <a (click)="sendMeResto(id.value)" class="btn btn-primary">Details</a>
+                     
+                      <div *ngIf="isadmin" class="d-inline">
+                            <a (click)="sendMeRestoAdd(id.value)" class="btn btn-primary">Edit</a>
+                            <a (click)= "delete(resto.id)" class="btn btn-primary">Delete</a>
+                            <div *ngIf="!resto.isVerified" class="d-inline">
+                                <a (click)= "verify(resto.id)" class="btn btn-primary d-inline" >Verify</a>
+                            </div>
+                      </div>
+
+                    </div>
+                </div>
+              </div>
+
+            </div><br>
+  
+    <hr>
+  
+  
+  
+    <hr>
+  </div>
+    <!-- Pagination -->
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#">1</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#">2</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#">3</a>
+      </li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  
+  </div>
+  <!-- /.container -->
+  
+

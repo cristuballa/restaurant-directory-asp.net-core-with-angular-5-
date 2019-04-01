@@ -1,0 +1,48 @@
+
+<mat-toolbar color="accent">
+  <mat-toolbar-row>
+    <span><a (click)="sendMeHome()">Restaurant Directory</a></span>
+    <div *ngIf="loggedIn()"  >
+    <button mat-button (click)="sendMeAddResto()">Add Restaurant</button>
+    </div>
+    <button mat-button (click)="sendMeRestos()"> Restaurants </button>
+    <span class="example-spacer"></span>
+
+   <div *ngIf="!loggedIn()"  >
+    <button mat-button  (click)="sendMeRegister()">Register</button>
+    <button mat-button (click)="sendMelogin1()" >Login</button>
+    </div>
+ <!--
+    <ul *ngIf="!loggedIn()" class="nav navbar-nav navbar-right">
+        <button mat-button  (click)="sendMeRegister()">Register</button>
+        <button mat-button (click)="sendMelogin1()" >Login</button>
+   </ul>
+  -->
+    <ul *ngIf="loggedIn()" class="nav navbar-nav navbar-right">
+        <li class="dropdown" dropdown>
+          <a (click)="false" class="dropdown-toggle" dropdownToggle>Welcome  {{authService.decodedToken?.given_name}} {{authService.decodedToken?.role}} <span class="caret"></span></a>
+          <ul class="dropdown-menu" *dropdownMenu>
+            <li><a href="#"><i class="fa fa-user"></i> Edit Profile</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a (click)="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+
+<!--      <span dropdown >
+          <a href id="basic-link" dropdownToggle (click)="false"
+             aria-controls="basic-link-dropdown">Click me for a dropdown, yo!</a>
+          <ul id="basic-link-dropdown" *dropdownMenu class="dropdown-menu"
+              role="menu" aria-labelledby="basic-link">
+            <li>
+              <a class="dropdown-item" href="#">Edit Profile</a>
+              <a class="dropdown-item" href="#">Logout</a>
+            </li>
+          </ul>
+      </span>
+-->
+
+
+  </mat-toolbar-row>
+</mat-toolbar>
+

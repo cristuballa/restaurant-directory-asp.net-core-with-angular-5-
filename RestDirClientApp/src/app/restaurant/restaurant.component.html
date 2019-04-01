@@ -1,0 +1,82 @@
+
+<div class="container">
+  <div class="card card-container">
+
+  <form [formGroup]="restoForm" (ngSubmit)="update()" >
+
+     <input type="hidden" class="form-control" id="userid" formControlName="userid" >
+
+     <div class="form-group" [ngClass]="{'has-error': restoForm.get('name').touched && restoForm.get('name').hasError('required')}">
+       <label for="restaurant_name" class="control-label">Restaurant Name</label>
+       <input type="text" class="form-control" id="restaurant_name" placeholder="Restaurant Name" formControlName="name">
+       <div *ngIf="restoForm.get('name').touched && restoForm.get('name').hasError('required')" class="help-block">Restaurant name is required</div>
+     </div>
+
+     <div class="form-group" [ngClass]="{'has-error': restoForm.get('address').touched && restoForm.get('address').hasError('required')}">
+       <label for="address_id" class="control-label">Address</label>
+       <input type="text" class="form-control" id="address_id" formControlName="address" placeholder="Building no., Street, city, country" >
+       <div *ngIf="restoForm.get('address').touched && restoForm.get('address').hasError('required')" class="help-block">Address name is required</div>
+     </div>
+
+     <div class="form-group" [ngClass]="{'has-error': restoForm.get('contactinfo').touched && restoForm.get('contactinfo').hasError('required')}">
+         <label for="contactinfo_id" class="control-label">Contact Info</label>
+         <input type="text" class="form-control" id="contactinfo_id" formControlName="contactinfo" placeholder="(022) 939 3434" >
+         <div *ngIf="restoForm.get('contactinfo').touched && restoForm.get('contactinfo').hasError('required')" class="help-block">Contact Info name is required</div>
+     </div>
+
+       <div class="form-group" [ngClass]="{'has-error': restoForm.get('openhours').touched && restoForm.get('openhours').hasError('required')}">
+           <label for="openhours_id" class="control-label">Open Hours</label>
+           <input type="text" class="form-control" id="openhours_id" formControlName="openhours" placeholder="9:00 am - 10:00 pm" >
+           <div *ngIf="restoForm.get('openhours').touched && restoForm.get('openhours').hasError('required')" class="help-block">Open hours name is required</div>
+       </div>
+
+       <div class="form-group" [ngClass]="{'has-error': restoForm.get('cuisine').touched && restoForm.get('cuisine').hasError('required')}">
+           <label for="cuisine_id" class="control-label">Cuisine</label>
+           <input type="text" class="form-control" id="cuisine_id" formControlName="cuisine" placeholder="Filipino Cuisine" >
+           <div *ngIf="restoForm.get('cuisine').touched && restoForm.get('cuisine').hasError('required')" class="help-block">Cuisine is required</div>
+       </div>
+
+       <div class="form-group" [ngClass]="{'has-error': restoForm.get('typeOfRestaurant').touched && restoForm.get('typeOfRestaurant').hasError('required')}">
+           <label for="restauranttype_id" class="control-label">Type of Restaurant</label>
+           <input type="text" class="form-control" id="restauranttype_id" formControlName="typeOfRestaurant" placeholder="Fine Dining" >
+           <div *ngIf="restoForm.get('typeOfRestaurant').touched && restoForm.get('typeOfRestaurant').hasError('required')" class="help-block">Type of Restaurant is required</div>
+       </div>
+
+
+     <div class="form-group" [ngClass]="{'has-error': restoForm.get('averagecost').touched && restoForm.get('averagecost').hasError('required')}">
+         <label for="averagecost_id" class="control-label">Average Cost</label>
+         <input type="text" class="form-control" id="averagecost_id" formControlName="averagecost" placeholder="Approx. NZD20 for two person" >
+         <div *ngIf="restoForm.get('averagecost').touched && restoForm.get('averagecost').hasError('required')" class="help-block">Average Cost is required</div>
+       </div>
+
+       <div class="form-group" [ngClass]="{'has-error': restoForm.get('description').touched && restoForm.get('description').hasError('required')}">
+           <label for="description_id" class="control-label">Description</label>
+           <textarea type="text" class="form-control" id="description_id" formControlName="description" placeholder="" ></textarea>
+           <div *ngIf="restoForm.get('description').touched && restoForm.get('description').hasError('required')" class="help-block">Description is required</div>
+         </div>
+
+         <div class="form-group" [ngClass]="{'has-error': restoForm.get('otherInfo').touched && restoForm.get('otherInfo').hasError('required')}">
+             <label for="otherInfo_id" class="control-label">Other Info</label>
+             <input type="text" class="form-control" id="v_id" formControlName="otherInfo" placeholder="" >
+             <div *ngIf="restoForm.get('otherInfo').touched && restoForm.get('otherInfo').hasError('required')" class="help-block">Other Info is required</div>
+         </div>
+
+         <div  class="form-group hidden" [ngClass]="{'has-error': restoForm.get('urlphoto').touched && restoForm.get('urlphoto').hasError('required')}">
+          <label for="urlphoto_id" class="control-label">Url of Photo</label>
+          <input type="text" class="form-control" id="urlphoto_id" formControlName="urlphoto" placeholder="" >
+          <div *ngIf="restoForm.get('urlphoto').touched && restoForm.get('urlphoto').hasError('required')" class="help-block">Photo is required</div>
+        </div>
+
+       <button class="btn btn-primary btn-block btn-signin" type="submit">Update</button>
+
+   </form>
+
+   <!--
+   <p>Display</p>
+   <p> {{restoForm.value | json}} </p>
+   <p> {{restoForm.status }} </p>
+   -->
+
+  </div>
+ </div>
+
